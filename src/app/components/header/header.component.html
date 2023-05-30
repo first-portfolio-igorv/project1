@@ -1,0 +1,81 @@
+<div class="header">
+    <div class="logo" [routerLink]="[ '/' ]">
+        <div class="logo__img"><img src="../../../assets/logo.svg" width="150px"
+                alt=""></div>
+        <div class="logo__img-mob"><img src="../../../assets/logo-mobile.svg"
+                width="70px" alt=""></div>
+
+    </div>
+
+    <div class="product">
+        <div class="product__category action" [routerLink]="[ '/action' ]"
+            routerLinkActive="route-active">
+            <img src="../../../assets/nav-img-gift.svg" alt="">
+            <p>Акції</p>
+        </div>
+        <div class="product__category" *ngFor="let category of headerCategory"
+            [routerLink]="[ '/product/'+ category.path ]"
+            routerLinkActive="route-active">
+            <img [src]="category.imagePath" alt="">
+            <p>{{category.name}}</p>
+        </div>
+    </div>
+    <div class="menu" (click)=" menu=!menu">&#9776;
+        <div class="header-menu" *ngIf="menu">
+            <div class="header-menu__close">
+                <i class="uil uil-multiply"></i></div>
+            <ul>
+                <li class="header-menu__li"><a [routerLink]="[ '/delivery' ]">Доставка
+                        та оплата</a></li>
+                <li class="header-menu__li"><a [routerLink]="[ '/about' ]">Про
+                        нас</a></li>
+                <li class="header-menu__li"><a [routerLink]="[ '/action' ]">Акції</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <button class="open-popup"><img width="20px" src="../../../assets/phone.svg"
+            alt=""> <span>МИ ЗАТЕЛЕФОНУЕМО</span></button>
+    <div class="header-phone">
+        <p class="header-phone__num">(097) 878 08 07</p>
+        <p><span class="header-phone__text">Працюємо з </span><span> 11:00
+            </span><span class="header-phone__text"> до </span><span> 21:30</span></p>
+    </div>
+
+
+    <div class="header-login" *ngIf="!isLogin"
+        (click)="openLoginDialog()">
+        <img src="../../../assets/user.svg" alt="">
+        <p></p>
+    </div>
+
+    <div class="header-user" [routerLink]="[ '/'+loginUrl ]" *ngIf="isLogin"
+        routerLinkActive="route-active"><p>{{ loginPage}}</p>
+    </div>
+
+    <div class="menu-mobile" (click)="menu=!menu">&#9776;
+        <div class="header-menu-mobile" *ngIf="menu">
+            <div class="header-menu__close">
+                <i class="uil uil-multiply"></i></div>
+            <ul>
+                <li class="header-menu__li"><a [routerLink]="[ '/delivery' ]">Доставка
+                        та оплата</a></li>
+                <li class="header-menu__li"><a [routerLink]="[ '/about' ]">Про
+                        нас</a></li>
+                <li class="header-menu__li"><a [routerLink]="[ '/action' ]">Акції</a></li>
+            </ul>
+
+            <p class="phone__num">(097) 878 08 07</p>
+            <p><span class="phone__text">Працюємо з </span><span> 11:00
+                </span><span class="phone__text"> до </span><span> 21:30</span></p>
+        </div>
+    </div>
+
+
+    <button (click)="openBasketDialog()"
+    mat-raised-button  class="checkout"><mat-icon
+            class="checkout__icon" matBadge="{{countBasket}}"
+            matBadgeColor="accent">shopping_cart</mat-icon>
+        <span class="checkout__count">{{total}}</span><span
+            class="checkout__name"> грн</span></button>
+    
